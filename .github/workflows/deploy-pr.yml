@@ -1,0 +1,87 @@
+name: Pull Request Build and Deploy
+
+on:
+  pull_request:
+    branches: [ main ]
+
+env:
+  PR_REPO_NAME: blog.vankoot.net-pr${{ github.event.pull_request.number }}
+  PAGES_BASE_URL: https://lennartkoot.github.io
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+    # Build
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+        fetch-depth: 0
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
+    - name: Build
+      run: hugo --minify --baseUrl ${{env.PAGES_BASE_URL}}/${{ env.PR_REPO_NAME }}/
+
+    # Deploy preparations
+    - name: Create PR repository
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.PAT }}
+        script: |
+          const { PR_REPO_NAME } = process.env;
+          try {
+            await github.rest.repos.get({
+              owner: 'LennartKoot',
+              repo: PR_REPO_NAME
+            });
+          } catch (error) {
+            if (error.status === 404) {
+              await github.rest.repos.createForAuthenticatedUser({
+                name: PR_REPO_NAME,
+                auto_init: true
+              });
+            }
+            else {
+              throw error;
+            }
+          }
+    - name: Create Github Pages site in PR repository
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.PAT }}
+        script: |
+          const { PR_REPO_NAME } = process.env;
+          try {
+            await github.rest.repos.getPages({
+              owner: 'LennartKoot',
+              repo: PR_REPO_NAME
+            });
+          } catch (error) {
+            if (error.status === 404) {
+              await github.rest.repos.createPagesSite({
+                owner: 'LennartKoot',
+                repo: PR_REPO_NAME,
+                source: {
+                  branch: 'main'
+                }
+              });
+            }
+            else {
+              throw error;
+            }
+          }
+
+    # Deploy
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.PAT }}
+        publish_dir: ./public
+        external_repository: LennartKoot/${{ env.PR_REPO_NAME }}
+        publish_branch: main
+        allow_empty_commit: true
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'

@@ -2,7 +2,6 @@
 # If you want to see the full configuration, please check `full-config.toml` .
 # And see https://gohugo.io/getting-started/configuration/ .
 
-baseURL = "https://blog.vankoot.net/"
 title = "Blog | Lennart van Koot"
 enableRobotsTXT = true
 enableEmoji = true

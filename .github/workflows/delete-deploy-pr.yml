@@ -1,0 +1,24 @@
+name: Delete Pull Request Deployment
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+
+env:
+  PR_REPO_NAME: blog.vankoot.net-pr${{ github.event.pull_request.number }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Delete PR repository
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.PAT }}
+        script: |
+          const { PR_REPO_NAME } = process.env;
+          await github.rest.repos.delete({
+            owner: 'LennartKoot',
+            repo: PR_REPO_NAME
+          });
