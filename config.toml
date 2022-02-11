@@ -1,0 +1,78 @@
+# This is a simple configuration.
+# If you want to see the full configuration, please check `full-config.toml` .
+# And see https://gohugo.io/getting-started/configuration/ .
+
+baseURL = "https://blog.vankoot.net/"
+title = "Blog | Lennart van Koot"
+enableRobotsTXT = true
+enableEmoji = true
+theme = "jane"
+
+hasCJKLanguage = true     # has chinese/japanese/korean
+paginate = 3              # Number of articles displayed on the homepage
+rssLimit = 20             # Limit Entry Count to Rss file
+disqusShortname = ""      # disqus_shortname
+googleAnalytics = ""      # UA-XXXXXXXX-X
+copyright = ""            # default: author.name
+
+# language support # en / zh-cn / other... translations present in i18n/
+defaultContentLanguage = "en"           # Default language to use
+[languages.en]
+  languageCode = "en"
+
+[author]                  # essential
+  name = "Lennart van Koot"
+
+[sitemap]                 # essential
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[[menu.main]]             # config your menu
+  name = "Home"
+  weight = 10
+  identifier = "home"
+  url = "/"
+[[menu.main]]
+  name = "Archives"
+  weight = 20
+  identifier = "archives"
+  url = "/post/"
+[[menu.main]]
+  name = "Tags"
+  weight = 30
+  identifier = "tags"
+  url = "/tags/"
+[[menu.main]]
+  name = "Categories"
+  weight = 40
+  identifier = "categories"
+  url = "/categories/"
+
+[params]
+  since = "2022"            # Site creation time
+  homeFullContent = false   # if false, show post summaries on home page. Otherwise show full content.
+  rssFullContent = true     # if false, Rss feed instead of the summary
+
+  # site info (optional)
+  logoTitle = "Jane"        # default: the title value
+  keywords = ["Hugo", "theme","jane"]
+  description = "Hugo theme jane example site."
+
+  # The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/
+  dateFormatToUse = "2006-01-02"
+
+  # Some global options, you can also close or open something in front matter for a single post, see more information from `archetypes/default.md`.
+  toc = true
+  photoswipe = true         # see https://github.com/dimsemenov/PhotoSwipe
+  contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
+
+  # Link custom CSS and JS assets
+  #   (relative to /static/css and /static/js respectively)
+  customCSS = []            # if ['custom.css'], load '/static/css/custom.css' file
+  customJS = []             # if ['custom.js'], load '/static/js/custom.js' file
+
+  [params.social]
+    a-email = "mailto:your@email.com"
+    e-linkedin = "https://blog.vankoot.net"
+    g-github = "https://blog.vankoot.net"
