@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  BASE_URL: https://blog.vankoot.net/
+  HOST_NAME: blog.vankoot.net
 
 jobs:
   deploy:
@@ -23,12 +23,13 @@ jobs:
         extended: true
 
     - name: Build
-      run: hugo --minify --baseUrl ${{ env.BASE_URL }}
+      run: hugo --minify --baseUrl https://${{ env.HOST_NAME }}/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        cname: ${{ env.HOST_NAME }}
         publish_dir: ./public
         publish_branch: gh-pages
         allow_empty_commit: true
