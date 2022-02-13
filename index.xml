@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog | Lennart van Koot</title><link>https://blog.vankoot.net/</link><description>Recent content on Blog | Lennart van Koot</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 11 Feb 2022 14:56:00 +0100</lastBuildDate><atom:link href="https://blog.vankoot.net/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://blog.vankoot.net/about/</link><pubDate>Fri, 11 Feb 2022 14:52:00 +0100</pubDate><guid>https://blog.vankoot.net/about/</guid><description>&lt;p>Hugo is a static site engine written in Go.&lt;/p>
+&lt;p>It makes use of a variety of open source projects including:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/spf13/cobra">Cobra&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/spf13/viper">Viper&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/spf13/jWalterWeatherman">J Walter Weatherman&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/spf13/cast">Cast&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>Test post</title><link>https://blog.vankoot.net/post/test-post/</link><pubDate>Fri, 11 Feb 2022 14:56:00 +0100</pubDate><guid>https://blog.vankoot.net/post/test-post/</guid><description>&lt;h2 id="test">Test&lt;/h2>
+&lt;p>A test post to check the workings of hugo and the jane theme.&lt;/p></description></item></channel></rss>
